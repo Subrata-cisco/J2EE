@@ -1,0 +1,209 @@
+https://www.geeksforgeeks.org/array-rotation/
+https://www.geeksforgeeks.org/search-an-element-in-a-sorted-and-pivoted-array/
+https://www.geeksforgeeks.org/given-a-sorted-and-rotated-array-find-if-there-is-a-pair-with-a-given-sum/
+		
+Max area in the histogram.
+queue using stack
+
+
+graph - al- linked list
+bfs
+dfs
+
+dynamical sql
+data link
+authorization context
+rest:
+
+
+
+https://dzone.com/articles/how-concurrenthashmap-works-internally-in-java
+http://www.mathcs.emory.edu/~cheung/Courses/323/Syllabus/Map/hash-func.html
+
+Java-5 - Enum,protected,Generics,WeakHashMap,Custom annotation,
+Java-8
+Java thread - Executor,Semaphore and Mutax,alternative thread,Deadlock,synchronizer,custom count-down-latch 
+LL,ConcurrentHashMap,ArrayList,Hashtable and HashMap,TreeMap ,custom Thread ,LinkedHashSet,LRU: Custom implementation.
+Class loading basics:
+GC algo and jvm arg parameters:
+Memory Leak detection and analysys:
+
+OODesign
+Design Pattern and Solid principles:
+System Design - 
+
+Viveks list
+DB questions, Normalization
+
+My github.
+Microservice patterns :
+Spring Boot/Rest :
+Regular expression: IP address, Email checking
+Cloud architecture in AWS :
+
+docker,kubernetes,kafka,reactjs,cassandra.
+
+DS:
+Number
+consecutive number i,e 1234 (Yes), 1213 (Yes), 9899100 (Yes), 1214 No
+Swap
+String
+Array
+Stacks 
+Queues
+LL
+Tree
+Graph
+Sorting
+Hashing
+Heap
+
+Salary slip back up
+Stock option back up.
+
+Two phase commit :
+
+DBMS :
+Create table syntax: 
+CREATE DATABASE  <db_name>
+ALTER DATABASE oldName MODIFY NAME = newName
+DROP DATABASE <db_name>
+CREATE TABLE Persons (
+    ID int NOT NULL AUTO_INCREMENT,
+    LastName varchar(255) NOT NULL,
+    FirstName varchar(255),
+    Age int
+	OrderId
+	PRIMARY KEY (Personid)
+	FOREIGN KEY (OrderId) REFERENCES Order(OrderId)
+	CONSTRAINT FK_PersonOrder FOREIGN KEY (OrderId)
+);
+
+ALTER TABLE Persons ADD DateOfBirth date;
+ALTER TABLE Persons ALTER COLUMN DateOfBirth year;
+ALTER TABLE Persons DROP COLUMN DateOfBirth;
+
+CREATE INDEX idx_lastname ON Persons (LastName);
+CREATE INDEX idx_pname ON Persons (LastName, FirstName);
+
+DROP INDEX idx_lastname; {in SQL server : tablename.indexname , in my sql alter table and drop index }
+
+BACKUP DATABASE testDB TO DISK = 'D:\backups\testDB.bak' WITH DIFFERENTIAL;
+RESTORE DATABASE DataBaseName TO DISK='d:\NameOfBackupFile.bak'
+
+CREATE OR REPLACE VIEW [Brazil Customers] AS
+SELECT CustomerName, ContactName, City
+FROM Customers
+WHERE Country = "Brazil";
+DROP VIEW view_name;
+
+SELECT StudentCourse.COURSE_ID, Student.NAME, Student.AGE FROM Student INNER JOIN StudentCourse ON Student.ROLL_NO = StudentCourse.ROLL_NO;
+SELECT Student.NAME,StudentCourse.COURSE_ID  FROM Student LEFT JOIN StudentCourse  ON StudentCourse.ROLL_NO = Student.ROLL_NO;
+SELECT Student.NAME,StudentCourse.COURSE_ID FROM Student RIGHT JOIN StudentCourse  ON StudentCourse.ROLL_NO = Student.ROLL_NO;
+SELECT Student.NAME,StudentCourse.COURSE_ID FROM Student FULL JOIN StudentCourse ON StudentCourse.ROLL_NO = Student.ROLL_NO;
+SELECT name, age FROM people ORDER BY name ASC, age DESC
+SELECT age, name FROM customers UNION SELECT age, name FROM staff;
+SELECT age, name FROM customers UNION ALL SELECT age, name FROM staff; (With duplicates)
+CREATE PROCEDURE getInfoFromTable AS SELECT * FROM <TableName>
+CREATE OR REPLACE PROCEDURE WM(ID IN VARCHAR2,NAME IN VARCHAR2) 
+IS
+BEGIN
+dbms_output.put_line('Welcome Subrata');
+END;
+
+select COLUMN_NAME from INFORMATION_SCHEMA.COLUMNS where TABLE_NAME='<TableName>';
+
+Important Query:
+SELECT MAX(Salary) from Employee WHERE Salary NOT IN (select MAX(Salary) from Employee );   [2nd highest salary]
+SELECT TOP 1 SALARY FROM (SELECT TOP 3 SALARY FROM EMPLOYEE orader by salary desc)  [generic query, here 3rd highest]
+DELETE FROM TableName WHERE ID NOT IN(SELECT MAX(ID) FROM TableName GROUP BY DuplicateColumn1, DuplicateColumn2) [delete duplicate id]
+[Duplicate data]
+Select * from Employee groupby <name> having count(name) > 1 [duplicate name from a table]
+Select * from Employee a where row_id != select max(row_id) for Employee b where a.Employee_num=b.Employee_num;
+[Finding employees who are managers/employee count of managers]
+Select emp_name from employee E1 ,employee E2 where E1.mng_id = E2.emp_id 
+Query1 : Select emp_name from employee E1 ,employee E2 where E1.mng_id = E2.emp_id 
+Query2 : SELECT COUNT(emp.emp_id),mng.mng_name FROM employees emp,(<Query1>) mng where emp.mng_id = mng.mng_id GROUP BY mng.mng_id
+
+Nested Query:
+Select S_NAME from STUDENT where S_ID IN(Select S_ID from STUDENT_COURSE where C_ID IN(SELECT C_ID from COURSE where C_NAME=’DSA’ or C_NAME=’DBMS’));
+
+Primary Key and Unique Key:
+One PK but multiple UK, PK not null but UK can be null, More than one UK is possible.
+
+Triggers:
+AFTER/BEFORE
+CREATE/UPDATE/DELETE
+CREATE TRIGGER  Check_age  BEFORE INSERT ON employee .... 
+
+Optimization technique:
+Index all the predicates in JOIN, WHERE, ORDER BY and GROUP BY clauses.
+Avoid using functions in predicates.(e.g SELECT * FROM TABLE1 WHERE UPPER(COL1)='ABC')
+Avoid using wildcard (%) at the beginning of a predicate. (e.g SELECT * FROM TABLE1 WHERE COL1 LIKE '%ABC')
+Avoid unnecessary columns in SELECT clause.
+Use inner join, instead of outer join if possible.
+DISTINCT and UNION should be used only if it is necessary.
+Oracle 10g and 11g requires that the CLOB/BLOB columns must be put at the end of the statements.
+The ORDER BY clause is mandatory ? as it is costly.
+Push predicates into the OUTER JOIN clause whenever possible.
+SELECT TAB_A.COL1, TAB_B.COL1 FROM TAB_A LEFT OUTER JOIN TAB_B ON TAB_A.COL3 = TAB_B.COL3 WHERE TAB_A.COL1=123 AND TAB_B.COL2=456;
+SELECT TAB_A.COL1, TAB_B.COL1 FROM TAB_A LEFT OUTER JOIN TAB_B ON TAB_A.COL3 = TAB_B.COL3 AND TAB_B.COL2=456 WHERE TAB_A.COL1=123;
+Using nested table definitions to replace workspaces views.
+
+CREATE TABLE employees (
+ 
+emp_id int(11) NOT NULL,
+emp_name varchar(45) DEFAULT NULL,
+mng_id int(11) DEFAULT NULL,
+PRIMARY KEY (emp_id)
+)
+
+
+LRU Cache
+Topological sort
+
+LL:
+Reverse LL 
+Reverse LL in pairs
+
+
+
+Stacks and Queue:
+Stock max span.
+Rectangular Max area 
+
+
+BST Tree:
+Lowest common ancestor.
+Level order traversal.
+preorder - using stack
+postOrder  - using visited flag.
+
+
+Binary Tree:
+Connect the next 
+Root to leaf Sum is found , print path
+Binary tree is a binary search tree. [Hint Min, Max]
+Lowest common ancestor.
+Same binary tree
+Size of a binary tree.
+height of a binary tree.
+
+
+
+
+
+Dynamic Proramming :
+
+
+
+Array:
+Find Min and Max
+
+
+
+
+
+
+
+
